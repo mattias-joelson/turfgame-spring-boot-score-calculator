@@ -44,19 +44,19 @@ public class RegionImport {
             return true;
         }
         if (o instanceof RegionImport that) {
-            return Objects.equals(regionId, that.regionId);
+            return Objects.equals(regionId, that.regionId) && Objects.equals(country, that.country);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(regionId);
+        return Objects.hash(regionId, country);
     }
 
     @Override
     public String toString() {
-        return String.format("RegionImport[regionId=%d, countryId=%s]",
+        return String.format("RegionImport[regionId=%d, country=%s]",
                 regionId, (country != null) ? country.getCountry() : null);
     }
 }

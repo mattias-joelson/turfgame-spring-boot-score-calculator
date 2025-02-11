@@ -43,15 +43,15 @@ public class ZoneImport {
         if (this == o) {
             return true;
         }
-        if (o instanceof ZoneImport zone) {
-            return Objects.equals(zoneId, zone.zoneId);
+        if (o instanceof ZoneImport that) {
+            return Objects.equals(zoneId, that.zoneId) && Objects.equals(region, that.region);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(zoneId);
+        return Objects.hash(zoneId, region);
     }
 
     @Override
