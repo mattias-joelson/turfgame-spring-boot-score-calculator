@@ -1,25 +1,24 @@
-package org.joelson.turf.scorecalc.imprt.model;
+package org.joelson.turf.scorecalc.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "users_import")
-public class UserImport {
+@Table(name = "users")
+public class User {
 
     @Id
     @Column(name = "user_id", nullable = false, updatable = false)
     private Integer userId;
 
-    protected UserImport() {
+    protected User() {
     }
 
-    public UserImport(Integer userId) {
+    public User(Integer userId) {
         this.userId = ModelConstraintsUtil.isAboveZero(userId);
     }
 
@@ -32,7 +31,7 @@ public class UserImport {
         if (this == o) {
             return true;
         }
-        if (o instanceof UserImport that) {
+        if (o instanceof User that) {
             return Objects.equals(userId, that.userId);
         }
         return false;
@@ -45,6 +44,6 @@ public class UserImport {
 
     @Override
     public String toString() {
-        return String.format("UserImport[userId=%d]", userId);
+        return String.format("User[userId=%d]", userId);
     }
 }

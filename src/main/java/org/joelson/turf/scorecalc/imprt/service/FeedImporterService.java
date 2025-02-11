@@ -1,12 +1,12 @@
 package org.joelson.turf.scorecalc.imprt.service;
 
-import org.joelson.turf.scorecalc.imprt.model.UserImport;
+import org.joelson.turf.scorecalc.model.User;
 import org.joelson.turf.scorecalc.imprt.model.VisitImport;
 import org.joelson.turf.scorecalc.model.Zone;
+import org.joelson.turf.scorecalc.service.UserService;
 import org.joelson.turf.scorecalc.service.ZoneImportService;
 import org.joelson.turf.turfgame.FeedObject;
 import org.joelson.turf.turfgame.apiv5.FeedTakeover;
-import org.joelson.turf.turfgame.apiv5.User;
 import org.joelson.turf.turfgame.util.DefaultFeedContentErrorHandler;
 import org.joelson.turf.turfgame.util.DefaultFeedContentLoggerErrorHandler;
 import org.joelson.turf.turfgame.util.FeedsReader;
@@ -36,7 +36,7 @@ public class FeedImporterService {
     private int takeoversAdded = 0;
 
     @Autowired
-    UserImportService userImportService;
+    UserService userService;
 
     @Autowired
     VisitImportService visitImportService;
@@ -105,7 +105,7 @@ public class FeedImporterService {
         takeoversHandled += 1;
         Zone zone = zoneImportService.getOrCreate(feedTakeover.getZone());
         Instant time = TimeUtil.turfTimestampToInstant(feedTakeover.getTime());
-        UserImport user = userImportService.getOrCreate(feedTakeover.getCurrentOwner());
+        User user = userService.getOrCreate(feedTakeover.getCurrentOwner());
         VisitImport existingVisit = visitImportService.get(zone, time);
         if (existingVisit != null) {
             if (!Objects.equals(existingVisit.getUser().getUserId(), user.getUserId())) {
@@ -116,8 +116,8 @@ public class FeedImporterService {
         }
 
         takeoversAdded += 1;
-        User turfPreviousOwner = feedTakeover.getPreviousOwner();
-        UserImport previousOwner = (turfPreviousOwner != null) ? userImportService.getOrCreate(turfPreviousOwner) :
+        org.joelson.turf.turfgame.apiv5.User turfPreviousOwner = feedTakeover.getPreviousOwner();
+        User previousOwner = (turfPreviousOwner != null) ? userService.getOrCreate(turfPreviousOwner) :
                 null;
         boolean takeover = (previousOwner == null) || !Objects.equals(user.getUserId(), previousOwner.getUserId());
         int zoneTakepoints = feedTakeover.getZone().getTakeoverPoints();

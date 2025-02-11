@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
+import org.joelson.turf.scorecalc.model.User;
 import org.joelson.turf.scorecalc.model.Zone;
 
 import java.time.Instant;
@@ -40,7 +41,7 @@ public class VisitImport {
     @ManyToOne
     @JoinColumn(name = "user_id", updatable = false, nullable = false,
             foreignKey = @ForeignKey(name = "fk_users_import_user_id"))
-    private UserImport user;
+    private User user;
 
     @Column(updatable = false, nullable = false)
     private boolean takeover;
@@ -64,7 +65,7 @@ public class VisitImport {
     }
 
     public VisitImport(
-            Zone zone, Instant time, UserImport user, boolean takeover, int zoneTakepoints, String countryName,
+            Zone zone, Instant time, User user, boolean takeover, int zoneTakepoints, String countryName,
             String regionName, String zoneName, String userName) {
         this.zone = Objects.requireNonNull(zone);
         this.time = ModelConstraintsUtil.isTruncatedToSeconds(time);
@@ -85,7 +86,7 @@ public class VisitImport {
         return time;
     }
 
-    public UserImport getUser() {
+    public User getUser() {
         return user;
     }
 

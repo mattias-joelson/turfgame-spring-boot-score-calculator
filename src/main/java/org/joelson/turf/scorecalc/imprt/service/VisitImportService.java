@@ -2,13 +2,13 @@ package org.joelson.turf.scorecalc.imprt.service;
 
 import org.joelson.turf.scorecalc.imprt.model.AssistImport;
 import org.joelson.turf.scorecalc.imprt.model.AssistImportRepository;
-import org.joelson.turf.scorecalc.imprt.model.UserImport;
+import org.joelson.turf.scorecalc.model.User;
 import org.joelson.turf.scorecalc.imprt.model.VisitImport;
 import org.joelson.turf.scorecalc.imprt.model.VisitImportId;
 import org.joelson.turf.scorecalc.imprt.model.VisitImportRepository;
 import org.joelson.turf.scorecalc.model.Zone;
+import org.joelson.turf.scorecalc.service.UserService;
 import org.joelson.turf.turfgame.apiv5.Region;
-import org.joelson.turf.turfgame.apiv5.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class VisitImportService {
     AssistImportRepository assistImportRepository;
 
     @Autowired
-    UserImportService userImportService;
+    UserService userService;
 
     @Autowired
     VisitImportRepository visitImportRepository;
@@ -32,8 +32,8 @@ public class VisitImportService {
     }
 
     public VisitImport add(
-            Zone zone, Instant time, UserImport user, boolean takeover, int zoneTakepoints, org.joelson.turf.turfgame.apiv5.Zone turfZone,
-            User currentOwner, User[] turfAssists) {
+            Zone zone, Instant time, User user, boolean takeover, int zoneTakepoints, org.joelson.turf.turfgame.apiv5.Zone turfZone,
+            org.joelson.turf.turfgame.apiv5.User currentOwner, org.joelson.turf.turfgame.apiv5.User[] turfAssists) {
         if (get(zone, time) != null) {
             throw new IllegalArgumentException("Visit exists.");
         }
@@ -47,8 +47,8 @@ public class VisitImportService {
         return visit;
     }
 
-    private void addAssist(Zone zone, Instant time, User turfUser) {
-        UserImport user = userImportService.getOrCreate(turfUser);
+    private void addAssist(Zone zone, Instant time, org.joelson.turf.turfgame.apiv5.User turfUser) {
+        User user = userService.getOrCreate(turfUser);
         assistImportRepository.save(new AssistImport(zone, time, user, turfUser.getName()));
     }
 }
