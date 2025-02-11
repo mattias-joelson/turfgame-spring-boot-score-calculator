@@ -22,8 +22,10 @@ class CountryImportTest {
         CountryImport country = new CountryImport(COUNTRY);
         assertEquals(country, country);
         assertEquals(country, new CountryImport(COUNTRY));
+        assertEquals(new CountryImport(COUNTRY), country);
         assertNotEquals(country, null);
         assertNotEquals(country, new CountryImport());
+        assertNotEquals(new CountryImport(), country);
 
         String countryName = "fi";
         assertNotEquals(COUNTRY, countryName);
@@ -35,7 +37,9 @@ class CountryImportTest {
         CountryImport country = new CountryImport(COUNTRY);
         assertEquals(country.hashCode(), country.hashCode());
         assertEquals(country.hashCode(), new CountryImport(COUNTRY).hashCode());
+        assertEquals(new CountryImport(COUNTRY).hashCode(), country.hashCode());
         assertNotEquals(country.hashCode(), new CountryImport().hashCode());
+        assertNotEquals(new CountryImport().hashCode(), country.hashCode());
 
         String countryName = "fi";
         assertNotEquals(COUNTRY.hashCode(), countryName.hashCode());

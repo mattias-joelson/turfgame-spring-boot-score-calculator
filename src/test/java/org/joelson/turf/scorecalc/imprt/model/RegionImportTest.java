@@ -34,8 +34,10 @@ class RegionImportTest {
         RegionImport region = new RegionImport(REGION_ID, COUNTRY);
         assertEquals(region, region);
         assertEquals(region, new RegionImport(REGION_ID, COUNTRY));
+        assertEquals(new RegionImport(REGION_ID, COUNTRY), region);
         assertNotEquals(region, null);
         assertNotEquals(region, new RegionImport());
+        assertNotEquals(new RegionImport(), region);
 
         Integer regionId = REGION_ID + 1;
         assertNotEquals(REGION_ID, regionId);
@@ -51,7 +53,9 @@ class RegionImportTest {
         RegionImport region = new RegionImport(REGION_ID, COUNTRY);
         assertEquals(region.hashCode(), region.hashCode());
         assertEquals(region.hashCode(), new RegionImport(REGION_ID, COUNTRY).hashCode());
+        assertEquals(new RegionImport(REGION_ID, COUNTRY).hashCode(), region.hashCode());
         assertNotEquals(region.hashCode(), new RegionImport().hashCode());
+        assertNotEquals(new RegionImport().hashCode(), region.hashCode());
 
         Integer regionId = REGION_ID + 1;
         assertNotEquals(REGION_ID.hashCode(), regionId.hashCode());

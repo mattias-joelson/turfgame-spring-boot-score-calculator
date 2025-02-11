@@ -23,8 +23,10 @@ class UserImportTest {
         UserImport user = new UserImport(USER_ID);
         assertEquals(user, user);
         assertEquals(user, new UserImport(USER_ID));
+        assertEquals(new UserImport(USER_ID), user);
         assertNotEquals(user, null);
         assertNotEquals(user, new UserImport());
+        assertNotEquals(new UserImportTest(), user);
 
         Integer userId = USER_ID + 1;
         assertNotEquals(USER_ID, userId);
@@ -36,7 +38,9 @@ class UserImportTest {
         UserImport user = new UserImport(USER_ID);
         assertEquals(user.hashCode(), user.hashCode());
         assertEquals(user.hashCode(), new UserImport(USER_ID).hashCode());
+        assertEquals(new UserImport(USER_ID).hashCode(), user.hashCode());
         assertNotEquals(user.hashCode(), new UserImport().hashCode());
+        assertNotEquals(new UserImport().hashCode(), user.hashCode());
 
         Integer userId = USER_ID + 1;
         assertNotEquals(USER_ID.hashCode(), userId.hashCode());
