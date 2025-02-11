@@ -110,7 +110,7 @@ public class FeedImporterService {
             if (!Objects.equals(existingVisit.getUser().getUserId(), user.getUserId())) {
                 throw new IllegalArgumentException("Different owners.");
             }
-            logger.trace(String.format("Skipping existing visit %s...", existingVisit));
+            logger.trace("Skipping existing visit {}", existingVisit);
             return;
         }
 
