@@ -9,13 +9,6 @@ final class ModelConstraintsUtil {
         throw new InstantiationException("Should not be instantiated.");
     }
 
-    public static Integer isNullOrAboveZero(Integer i) {
-        if (i == null || i > 0) {
-            return i;
-        }
-        throw new IllegalArgumentException(Objects.toString(i));
-    }
-
     public static Integer isAboveZero(Integer i) {
         if (Objects.requireNonNull(i) > 0) {
             return i;
