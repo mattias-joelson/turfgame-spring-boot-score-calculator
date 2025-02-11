@@ -1,0 +1,17 @@
+package org.joelson.turf.scorecalc.modelimport;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
+
+public interface AssistImportRepository extends JpaRepository<AssistImport, AssistImportId> {
+
+    @Query("select a from AssistImport a where a.zone.id = :zoneId and a.time = :time and a.user.id = :userId")
+    <T> Optional<T> findByZoneIdAndTimeAndUserId(Long zoneId, Instant time, Long userId, Class<T> type);
+
+    @Query("select a from AssistImport a where a.zone.id = :zoneId and a.time = :time order by a.user.id")
+    <T> List<T> findByZoneIdAndTime(Long zoneId, Instant time, Class<T> type);
+}
