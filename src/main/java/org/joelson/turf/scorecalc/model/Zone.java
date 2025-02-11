@@ -62,7 +62,7 @@ public class Zone {
 
     @Override
     public String toString() {
-        return String.format("ZoneImport[zoneId=%d, regionId=%d, country=%s]",
+        return String.format("Zone[zoneId=%d, regionId=%d, country=%s]",
                 zoneId, regionId, (country != null) ? country : null);
     }
 }
