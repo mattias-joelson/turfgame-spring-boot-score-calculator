@@ -4,7 +4,9 @@ import org.joelson.turf.turfgame.FeedObject;
 import org.joelson.turf.turfgame.apiv5.FeedTakeover;
 import org.joelson.turf.turfgame.util.DefaultFeedContentErrorHandler;
 import org.joelson.turf.turfgame.util.DefaultFeedContentLoggerErrorHandler;
+import org.joelson.turf.turfgame.util.FeedsPathComparator;
 import org.joelson.turf.turfgame.util.FeedsReader;
+import org.joelson.turf.util.FilesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -44,7 +46,7 @@ public class FeedImporterService {
         int filesHandledBefore = filesHandled;
         int takeoversBefore = takeovers;
         try {
-            feedsReader.handleFeedObjectPath(Path.of(filename), this::logEvery1000thPath, this::handleFeedObject);
+            FilesUtil.forEachFile(Path.of(filename), true, new FeedsPathComparator(), this::addFeedsObjects);
         } catch (IOException e) {
             logger.error("Error importing data from '{}'", filename);
         }
@@ -53,6 +55,14 @@ public class FeedImporterService {
         logger.info("    files handled: {}, takeovers: {}",
                 filesHandledAfter - filesHandledBefore,
                 takeOversAfter - takeoversBefore);
+    }
+
+    private void addFeedsObjects(Path path) {
+        try {
+            feedsReader.handleFeedObjectPath(path, this::logEvery1000thPath, this::handleFeedObject);
+        } catch (IOException e) {
+            logger.error("Error importing data from '{}'", path);
+        }
     }
 
     private void logEvery1000thPath(Path path) {
