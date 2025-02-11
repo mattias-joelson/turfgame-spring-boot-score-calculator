@@ -1,20 +1,18 @@
-package org.joelson.turf.scorecalc.imprt.model;
-
-import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
+package org.joelson.turf.scorecalc.model;
 
 import java.time.Instant;
 import java.util.Objects;
 
-public class AssistImportId {
+public class AssistId {
 
     private Integer zone;
     private Instant time;
     private Integer user;
 
-    protected AssistImportId() {
+    protected AssistId() {
     }
 
-    public AssistImportId(Integer zone, Instant time, Integer user) {
+    public AssistId(Integer zone, Instant time, Integer user) {
         setZone(zone);
         setTime(time);
         setUser(user);
@@ -49,7 +47,7 @@ public class AssistImportId {
         if (this == o) {
             return true;
         }
-        if (o instanceof AssistImportId that) {
+        if (o instanceof AssistId that) {
             return Objects.equals(zone, that.zone) && Objects.equals(user, that.user)
                     && Objects.equals(time, that.time);
         }
@@ -63,6 +61,6 @@ public class AssistImportId {
 
     @Override
     public String toString() {
-        return String.format("AssistImportId[zone=%d, time=%s, user=%d]", zone, time, user);
+        return String.format("AssistId[zone=%d, time=%s, user=%d]", zone, time, user);
     }
 }

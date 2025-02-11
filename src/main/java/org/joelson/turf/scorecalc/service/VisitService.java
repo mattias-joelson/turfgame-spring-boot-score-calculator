@@ -1,7 +1,7 @@
 package org.joelson.turf.scorecalc.service;
 
-import org.joelson.turf.scorecalc.imprt.model.AssistImport;
-import org.joelson.turf.scorecalc.imprt.model.AssistImportRepository;
+import org.joelson.turf.scorecalc.model.Assist;
+import org.joelson.turf.scorecalc.model.AssistRepository;
 import org.joelson.turf.scorecalc.model.TurfgameAssertionException;
 import org.joelson.turf.scorecalc.model.User;
 import org.joelson.turf.scorecalc.model.Visit;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class VisitService {
 
     @Autowired
-    AssistImportRepository assistImportRepository;
+    AssistRepository assistRepository;
 
     @Autowired
     UserService userService;
@@ -50,6 +50,6 @@ public class VisitService {
 
     private void addAssist(Zone zone, Instant time, org.joelson.turf.turfgame.apiv5.User turfUser) {
         User user = userService.getOrCreate(turfUser);
-        assistImportRepository.save(new AssistImport(zone, time, user, turfUser.getName()));
+        assistRepository.save(new Assist(zone, time, user, turfUser.getName()));
     }
 }

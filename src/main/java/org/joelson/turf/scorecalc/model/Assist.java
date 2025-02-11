@@ -1,4 +1,4 @@
-package org.joelson.turf.scorecalc.imprt.model;
+package org.joelson.turf.scorecalc.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,20 +9,17 @@ import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
-import org.joelson.turf.scorecalc.model.User;
-import org.joelson.turf.scorecalc.model.Zone;
 
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@IdClass(AssistImportId.class)
+@IdClass(AssistId.class)
 @Table(name = "assists_import", indexes = { @Index(name = "index_assists_zone_id", columnList = "zone_id"),
         @Index(name = "index_assists_time", columnList = "time"),
         @Index(name = "index_assists_user_id", columnList = "user_id"),
         @Index(name = "index_assists_user_name", columnList = "user_name") })
-public class AssistImport {
+public class Assist {
 
     @Id
     @ManyToOne
@@ -43,10 +40,10 @@ public class AssistImport {
     @Column(name = "user_name", updatable = false, nullable = false)
     private String userName;
 
-    protected AssistImport() {
+    protected Assist() {
     }
 
-    public AssistImport(Zone zone, Instant time, User user, String userName) {
+    public Assist(Zone zone, Instant time, User user, String userName) {
         this.zone = Objects.requireNonNull(zone);
         this.time = ModelConstraintsUtil.isTruncatedToSeconds(time);
         this.user = Objects.requireNonNull(user);
@@ -74,7 +71,7 @@ public class AssistImport {
         if (this == o) {
             return true;
         }
-        if (o instanceof AssistImport that) {
+        if (o instanceof Assist that) {
             return Objects.equals(zone, that.zone) && Objects.equals(time, that.time)
                     && Objects.equals(user, that.user);
         }
@@ -88,7 +85,7 @@ public class AssistImport {
 
     @Override
     public String toString() {
-        return String.format("AssistImport[zoneId=%d, time=%s, userId=%d, userName=%s",
+        return String.format("Assist[zoneId=%d, time=%s, userId=%d, userName=%s",
                 zone.getZoneId(), time, user.getUserId(), userName);
     }
 }
