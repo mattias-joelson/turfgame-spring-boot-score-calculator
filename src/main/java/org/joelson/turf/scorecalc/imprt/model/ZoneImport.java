@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 import java.util.Objects;
 
 @Entity
-@Table(name = "zone_imports", indexes = { @Index(name = "index_zones_region_id", columnList = "region_id") })
+@Table(name = "zones_import", indexes = { @Index(name = "index_zones_region_id", columnList = "region_id") })
 public class ZoneImport {
 
     @Id
