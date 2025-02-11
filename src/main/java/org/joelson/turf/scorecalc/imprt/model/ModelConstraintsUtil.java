@@ -1,7 +1,6 @@
 package org.joelson.turf.scorecalc.imprt.model;
 
 import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 final class ModelConstraintsUtil {
@@ -25,7 +24,7 @@ final class ModelConstraintsUtil {
     }
 
     public static Instant isTruncatedToSeconds(Instant instant) {
-        if (Objects.requireNonNull(instant).truncatedTo(ChronoUnit.SECONDS).equals(instant)) {
+        if (Objects.requireNonNull(instant).getNano() == 0) {
             return instant;
         }
         throw new IllegalArgumentException(instant.toString());
