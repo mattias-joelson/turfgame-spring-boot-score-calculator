@@ -51,10 +51,10 @@ public class FeedImporterService {
             logger.error("Error importing data from '{}'", filename);
         }
         int filesHandledAfter = filesHandled;
-        int takeOversAfter = takeovers;
-        logger.info("    files handled: {}, takeovers: {}",
+        int takeoversAfter = takeovers;
+        logger.info("    files handled={}, takeovers={}",
                 filesHandledAfter - filesHandledBefore,
-                takeOversAfter - takeoversBefore);
+                takeoversAfter - takeoversBefore);
     }
 
     private void addFeedsObjects(Path path) {
@@ -66,10 +66,10 @@ public class FeedImporterService {
     }
 
     private void logEvery1000thPath(Path path) {
-        if (filesHandled % 1000 == 0) {
-            logger.info("    reading path {}", path);
-        }
         filesHandled += 1;
+        if (filesHandled % 1000 == 0) {
+            logger.info("    reading path {} - filesHandled={}, takeovers={}", path, filesHandled, takeovers);
+        }
     }
 
     private void handleFeedObject(FeedObject feedObject) {
