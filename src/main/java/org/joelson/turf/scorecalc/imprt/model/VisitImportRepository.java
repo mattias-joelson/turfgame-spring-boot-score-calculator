@@ -10,4 +10,10 @@ public interface VisitImportRepository extends JpaRepository<VisitImport, VisitI
 
     @Query("select v from VisitImport v where v.zone.id = :zoneId and v.time = :time")
     <T> Optional<T> findByZoneIdAndTime(Integer zoneId, Instant time, Class<T> type);
+
+    @Query("select min(v.time) from VisitImport v")
+    Optional<Instant> findFirstVisitTime();
+
+    @Query("select max(v.time) from VisitImport v")
+    Optional<Instant> findLastVisitTime();
 }
