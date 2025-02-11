@@ -37,8 +37,8 @@ public class VisitImportId {
         if (this == o) {
             return true;
         }
-        if (o instanceof VisitImportId visitId) {
-            return Objects.equals(zone, visitId.zone) && Objects.equals(time, visitId.time);
+        if (o instanceof VisitImportId that) {
+            return Objects.equals(zone, that.zone) && Objects.equals(time, that.time);
         }
         return false;
     }

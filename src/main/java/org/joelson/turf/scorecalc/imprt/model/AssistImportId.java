@@ -47,9 +47,9 @@ public class AssistImportId {
         if (this == o) {
             return true;
         }
-        if (o instanceof AssistImportId visitId) {
-            return Objects.equals(zone, visitId.zone) && Objects.equals(user, visitId.user)
-                    && Objects.equals(time, visitId.time);
+        if (o instanceof AssistImportId that) {
+            return Objects.equals(zone, that.zone) && Objects.equals(user, that.user)
+                    && Objects.equals(time, that.time);
         }
         return false;
     }
