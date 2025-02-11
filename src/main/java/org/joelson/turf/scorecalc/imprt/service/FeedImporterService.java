@@ -1,9 +1,10 @@
 package org.joelson.turf.scorecalc.imprt.service;
 
 import org.joelson.turf.scorecalc.model.User;
-import org.joelson.turf.scorecalc.imprt.model.VisitImport;
+import org.joelson.turf.scorecalc.model.Visit;
 import org.joelson.turf.scorecalc.model.Zone;
 import org.joelson.turf.scorecalc.service.UserService;
+import org.joelson.turf.scorecalc.service.VisitService;
 import org.joelson.turf.scorecalc.service.ZoneImportService;
 import org.joelson.turf.turfgame.FeedObject;
 import org.joelson.turf.turfgame.apiv5.FeedTakeover;
@@ -39,7 +40,7 @@ public class FeedImporterService {
     UserService userService;
 
     @Autowired
-    VisitImportService visitImportService;
+    VisitService visitService;
 
     @Autowired
     ZoneImportService zoneImportService;
@@ -106,7 +107,7 @@ public class FeedImporterService {
         Zone zone = zoneImportService.getOrCreate(feedTakeover.getZone());
         Instant time = TimeUtil.turfTimestampToInstant(feedTakeover.getTime());
         User user = userService.getOrCreate(feedTakeover.getCurrentOwner());
-        VisitImport existingVisit = visitImportService.get(zone, time);
+        Visit existingVisit = visitService.get(zone, time);
         if (existingVisit != null) {
             if (!Objects.equals(existingVisit.getUser().getUserId(), user.getUserId())) {
                 throw new IllegalArgumentException("Different owners.");
@@ -121,7 +122,7 @@ public class FeedImporterService {
                 null;
         boolean takeover = (previousOwner == null) || !Objects.equals(user.getUserId(), previousOwner.getUserId());
         int zoneTakepoints = feedTakeover.getZone().getTakeoverPoints();
-        visitImportService.add(zone, time, user, takeover, zoneTakepoints, feedTakeover.getZone(),
+        visitService.add(zone, time, user, takeover, zoneTakepoints, feedTakeover.getZone(),
                 feedTakeover.getCurrentOwner(), feedTakeover.getAssists());
     }
 }

@@ -1,13 +1,13 @@
-package org.joelson.turf.scorecalc.imprt.service;
+package org.joelson.turf.scorecalc.service;
 
 import org.joelson.turf.scorecalc.imprt.model.AssistImport;
 import org.joelson.turf.scorecalc.imprt.model.AssistImportRepository;
+import org.joelson.turf.scorecalc.model.TurfgameAssertionException;
 import org.joelson.turf.scorecalc.model.User;
-import org.joelson.turf.scorecalc.imprt.model.VisitImport;
-import org.joelson.turf.scorecalc.imprt.model.VisitImportId;
-import org.joelson.turf.scorecalc.imprt.model.VisitImportRepository;
+import org.joelson.turf.scorecalc.model.Visit;
+import org.joelson.turf.scorecalc.model.VisitId;
+import org.joelson.turf.scorecalc.model.VisitRepository;
 import org.joelson.turf.scorecalc.model.Zone;
-import org.joelson.turf.scorecalc.service.UserService;
 import org.joelson.turf.turfgame.apiv5.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import java.time.Instant;
 import java.util.Arrays;
 
 @Service
-public class VisitImportService {
+public class VisitService {
 
     @Autowired
     AssistImportRepository assistImportRepository;
@@ -25,21 +25,22 @@ public class VisitImportService {
     UserService userService;
 
     @Autowired
-    VisitImportRepository visitImportRepository;
+    VisitRepository visitRepository;
 
-    public VisitImport get(Zone zone, Instant time) {
-        return visitImportRepository.findById(new VisitImportId(zone.getZoneId(), time)).orElse(null);
+    public Visit get(Zone zone, Instant time) {
+        return visitRepository.findById(new VisitId(zone.getZoneId(), time)).orElse(null);
     }
 
-    public VisitImport add(
-            Zone zone, Instant time, User user, boolean takeover, int zoneTakepoints, org.joelson.turf.turfgame.apiv5.Zone turfZone,
-            org.joelson.turf.turfgame.apiv5.User currentOwner, org.joelson.turf.turfgame.apiv5.User[] turfAssists) {
+    public Visit add(
+            Zone zone, Instant time, User user, boolean takeover, int takePoints,
+            org.joelson.turf.turfgame.apiv5.Zone turfZone, org.joelson.turf.turfgame.apiv5.User currentOwner,
+            org.joelson.turf.turfgame.apiv5.User[] turfAssists) {
         if (get(zone, time) != null) {
-            throw new IllegalArgumentException("Visit exists.");
+            throw new TurfgameAssertionException("Visit exists.");
         }
         Region region = turfZone.getRegion();
-        VisitImport visit = visitImportRepository.save(
-                new VisitImport(zone, time, user, takeover, zoneTakepoints, region.getCountry(), region.getName(),
+        Visit visit = visitRepository.save(
+                new Visit(zone, time, user, takeover, takePoints, region.getCountry(), region.getName(),
                         turfZone.getName(), currentOwner.getName()));
         if (turfAssists != null) {
             Arrays.stream(turfAssists).forEach(turfUser -> addAssist(zone, time, turfUser));

@@ -1,4 +1,4 @@
-package org.joelson.turf.scorecalc.imprt.model;
+package org.joelson.turf.scorecalc.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,16 +9,13 @@ import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
-import org.joelson.turf.scorecalc.model.User;
-import org.joelson.turf.scorecalc.model.Zone;
 
 import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@IdClass(VisitImportId.class)
-@Table(name = "visits_import", indexes = {
+@IdClass(VisitId.class)
+@Table(name = "visits", indexes = {
         @Index(name = "index_visits_zone_id", columnList = "zone_id"),
         @Index(name = "index_visits_time", columnList = "time"),
         @Index(name = "index_visits_user_id", columnList = "user_id"),
@@ -26,7 +23,7 @@ import java.util.Objects;
         @Index(name = "index_visits_region_name", columnList = "region_name"),
         @Index(name = "index_visits_zone_name", columnList = "zone_name"),
         @Index(name = "index_visits_user_name", columnList = "user_name") })
-public class VisitImport {
+public class Visit {
 
     @Id
     @ManyToOne
@@ -46,8 +43,8 @@ public class VisitImport {
     @Column(updatable = false, nullable = false)
     private boolean takeover;
 
-    @Column(name = "zone_takepoints", updatable = false, nullable = false)
-    private int zoneTakepoints;
+    @Column(name = "take_points", updatable = false, nullable = false)
+    private int takePoints;
 
     @Column(name = "country_name", updatable = false)
     private String countryName;
@@ -61,17 +58,17 @@ public class VisitImport {
     @Column(name = "user_name", updatable = false, nullable = false)
     private String userName;
 
-    protected VisitImport() {
+    protected Visit() {
     }
 
-    public VisitImport(
-            Zone zone, Instant time, User user, boolean takeover, int zoneTakepoints, String countryName,
+    public Visit(
+            Zone zone, Instant time, User user, boolean takeover, int takePoints, String countryName,
             String regionName, String zoneName, String userName) {
         this.zone = Objects.requireNonNull(zone);
         this.time = ModelConstraintsUtil.isTruncatedToSeconds(time);
         this.user = Objects.requireNonNull(user);
         this.takeover = takeover;
-        this.zoneTakepoints = zoneTakepoints;
+        this.takePoints = takePoints;
         this.countryName = ModelConstraintsUtil.isNullOrNotEmpty(countryName);
         this.regionName = ModelConstraintsUtil.isNotEmpty(regionName);
         this.zoneName = ModelConstraintsUtil.isNotEmpty(zoneName);
@@ -94,8 +91,8 @@ public class VisitImport {
         return takeover;
     }
 
-    public int getZoneTakepoints() {
-        return zoneTakepoints;
+    public int getTakePoints() {
+        return takePoints;
     }
 
     public String getCountryName() {
@@ -119,7 +116,7 @@ public class VisitImport {
         if (this == o) {
             return true;
         }
-        if (o instanceof VisitImport that) {
+        if (o instanceof Visit that) {
             return Objects.equals(zone, that.zone) && Objects.equals(time, that.time);
         }
         return false;
@@ -133,9 +130,9 @@ public class VisitImport {
     @Override
     public String toString() {
         return String.format(
-                "VisitImport[zoneId=%d, time=%s, userId=%d, takeover=%b, zoneTakepoints=%d, countryName=%s, "
-                        + "regionName=%s, zoneName=%s, userName=%s]",
-                zone.getZoneId(), time, user.getUserId(), takeover, zoneTakepoints, countryName, regionName, zoneName,
+                "Visit[zoneId=%d, time=%s, userId=%d, takeover=%b, takePoints=%d, countryName=%s, regionName=%s, "
+                        + "zoneName=%s, userName=%s]",
+                zone.getZoneId(), time, user.getUserId(), takeover, takePoints, countryName, regionName, zoneName,
                 userName);
     }
 }

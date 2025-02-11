@@ -1,6 +1,6 @@
 package org.joelson.turf.scorecalc.service;
 
-import org.joelson.turf.scorecalc.imprt.model.VisitImportRepository;
+import org.joelson.turf.scorecalc.model.VisitRepository;
 import org.joelson.turf.scorecalc.model.Round;
 import org.joelson.turf.scorecalc.model.RoundRepository;
 import org.slf4j.Logger;
@@ -32,14 +32,14 @@ public class RoundService {
     private RoundRepository roundRepository;
 
     @Autowired
-    private VisitImportRepository visitImportRepository;
+    private VisitRepository visitRepository;
 
     public void updateRounds() {
-        Instant firstVisitTime = visitImportRepository.findFirstVisitTime().orElse(null);
+        Instant firstVisitTime = visitRepository.findFirstVisitTime().orElse(null);
         if (firstVisitTime == null) {
             return;
         }
-        Instant lastVisitTime = visitImportRepository.findLastVisitTime().orElse(null);
+        Instant lastVisitTime = visitRepository.findLastVisitTime().orElse(null);
         if (lastVisitTime == null) {
             throw new IllegalStateException("lastVisitTime is null while firstVisitTime is" + firstVisitTime);
         }
