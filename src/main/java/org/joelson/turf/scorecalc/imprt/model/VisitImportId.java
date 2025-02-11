@@ -1,5 +1,7 @@
 package org.joelson.turf.scorecalc.imprt.model;
 
+import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
+
 import java.time.Instant;
 import java.util.Objects;
 

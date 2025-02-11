@@ -8,6 +8,7 @@ import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import org.joelson.turf.scorecalc.model.ModelConstraintsUtil;
 
 import java.util.Objects;
 
