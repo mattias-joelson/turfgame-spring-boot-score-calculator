@@ -6,10 +6,9 @@ import org.joelson.turf.scorecalc.imprt.model.UserImport;
 import org.joelson.turf.scorecalc.imprt.model.VisitImport;
 import org.joelson.turf.scorecalc.imprt.model.VisitImportId;
 import org.joelson.turf.scorecalc.imprt.model.VisitImportRepository;
-import org.joelson.turf.scorecalc.imprt.model.ZoneImport;
+import org.joelson.turf.scorecalc.model.Zone;
 import org.joelson.turf.turfgame.apiv5.Region;
 import org.joelson.turf.turfgame.apiv5.User;
-import org.joelson.turf.turfgame.apiv5.Zone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +27,12 @@ public class VisitImportService {
     @Autowired
     VisitImportRepository visitImportRepository;
 
-    public VisitImport get(ZoneImport zone, Instant time) {
+    public VisitImport get(Zone zone, Instant time) {
         return visitImportRepository.findById(new VisitImportId(zone.getZoneId(), time)).orElse(null);
     }
 
     public VisitImport add(
-            ZoneImport zone, Instant time, UserImport user, boolean takeover, int zoneTakepoints, Zone turfZone,
+            Zone zone, Instant time, UserImport user, boolean takeover, int zoneTakepoints, org.joelson.turf.turfgame.apiv5.Zone turfZone,
             User currentOwner, User[] turfAssists) {
         if (get(zone, time) != null) {
             throw new IllegalArgumentException("Visit exists.");
@@ -48,7 +47,7 @@ public class VisitImportService {
         return visit;
     }
 
-    private void addAssist(ZoneImport zone, Instant time, User turfUser) {
+    private void addAssist(Zone zone, Instant time, User turfUser) {
         UserImport user = userImportService.getOrCreate(turfUser);
         assistImportRepository.save(new AssistImport(zone, time, user, turfUser.getName()));
     }

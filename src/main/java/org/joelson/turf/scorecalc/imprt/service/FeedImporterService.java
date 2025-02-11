@@ -2,7 +2,8 @@ package org.joelson.turf.scorecalc.imprt.service;
 
 import org.joelson.turf.scorecalc.imprt.model.UserImport;
 import org.joelson.turf.scorecalc.imprt.model.VisitImport;
-import org.joelson.turf.scorecalc.imprt.model.ZoneImport;
+import org.joelson.turf.scorecalc.model.Zone;
+import org.joelson.turf.scorecalc.service.ZoneImportService;
 import org.joelson.turf.turfgame.FeedObject;
 import org.joelson.turf.turfgame.apiv5.FeedTakeover;
 import org.joelson.turf.turfgame.apiv5.User;
@@ -102,7 +103,7 @@ public class FeedImporterService {
 
     private void handleTakeover(FeedTakeover feedTakeover) {
         takeoversHandled += 1;
-        ZoneImport zone = zoneImportService.getOrCreate(feedTakeover.getZone());
+        Zone zone = zoneImportService.getOrCreate(feedTakeover.getZone());
         Instant time = TimeUtil.turfTimestampToInstant(feedTakeover.getTime());
         UserImport user = userImportService.getOrCreate(feedTakeover.getCurrentOwner());
         VisitImport existingVisit = visitImportService.get(zone, time);
