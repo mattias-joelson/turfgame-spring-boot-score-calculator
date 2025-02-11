@@ -13,16 +13,16 @@ public class UserImport {
 
     @Id
     @Column(name = "user_id", nullable = false, updatable = false)
-    private Long userId;
+    private Integer userId;
 
     protected UserImport() {
     }
 
-    public UserImport(Long userId) {
+    public UserImport(Integer userId) {
         this.userId = ModelConstraintsUtil.isAboveZero(userId);
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 

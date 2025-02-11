@@ -6,15 +6,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RegionImportTest {
 
-    private static final Long REGION_ID = 1L;
+    private static final Integer REGION_ID = 1;
     public static final String COUNTRY_NAME = "se";
     private static final CountryImport COUNTRY = new CountryImport(COUNTRY_NAME);
 
     @Test
     void testRegionId() {
         assertThrows(NullPointerException.class, () -> new RegionImport(null, COUNTRY));
-        assertThrows(IllegalArgumentException.class, () -> new RegionImport(0L, COUNTRY));
-        assertThrows(IllegalArgumentException.class, () -> new RegionImport(-3L, COUNTRY));
+        assertThrows(IllegalArgumentException.class, () -> new RegionImport(0, COUNTRY));
+        assertThrows(IllegalArgumentException.class, () -> new RegionImport(-3, COUNTRY));
 
         RegionImport region = new RegionImport(REGION_ID, COUNTRY);
         assertEquals(REGION_ID, region.getRegionId());
@@ -37,7 +37,7 @@ class RegionImportTest {
         assertNotEquals(region, null);
         assertNotEquals(region, new RegionImport());
 
-        Long regionId = REGION_ID + 1L;
+        Integer regionId = REGION_ID + 1;
         assertNotEquals(REGION_ID, regionId);
         assertNotEquals(region, new RegionImport(regionId, COUNTRY));
 
@@ -53,7 +53,7 @@ class RegionImportTest {
         assertEquals(region.hashCode(), new RegionImport(REGION_ID, COUNTRY).hashCode());
         assertNotEquals(region.hashCode(), new RegionImport().hashCode());
 
-        Long regionId = REGION_ID + 1L;
+        Integer regionId = REGION_ID + 1;
         assertNotEquals(REGION_ID.hashCode(), regionId.hashCode());
         assertNotEquals(region.hashCode(), new RegionImport(regionId, COUNTRY).hashCode());
 

@@ -5,22 +5,22 @@ import java.util.Objects;
 
 public class VisitImportId {
 
-    private Long zone;
+    private Integer zone;
     private Instant time;
 
     protected VisitImportId() {
     }
 
-    public VisitImportId(Long zone, Instant time) {
+    public VisitImportId(Integer zone, Instant time) {
         setZone(zone);
         setTime(time);
     }
 
-    public Long getZone() {
+    public Integer getZone() {
         return zone;
     }
 
-    public void setZone(Long zone) {
+    public void setZone(Integer zone) {
         this.zone = ModelConstraintsUtil.isAboveZero(zone);
     }
 

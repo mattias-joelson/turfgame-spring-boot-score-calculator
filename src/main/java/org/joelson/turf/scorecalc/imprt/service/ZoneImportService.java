@@ -18,10 +18,10 @@ public class ZoneImportService {
     ZoneImportRepository zoneImportRepository;
 
     public ZoneImport getOrCreate(Zone turfZone) {
-        ZoneImport zone = zoneImportRepository.findById((long) turfZone.getId()).orElse(null);
+        ZoneImport zone = zoneImportRepository.findById(turfZone.getId()).orElse(null);
         if (zone == null) {
             RegionImport region = regionImportService.getOrCreate(turfZone.getRegion());
-            return zoneImportRepository.save(new ZoneImport((long) turfZone.getId(), region));
+            return zoneImportRepository.save(new ZoneImport(turfZone.getId(), region));
         } else {
             Region turfRegion = turfZone.getRegion();
             if (turfRegion == null || zone.getRegion().getRegionId() != turfRegion.getId()) {

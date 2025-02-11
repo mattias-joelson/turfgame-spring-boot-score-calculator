@@ -13,9 +13,9 @@ public class UserImportService {
     UserImportRepository userImportRepository;
 
     public UserImport getOrCreate(User turfUser) {
-        UserImport user = userImportRepository.findById((long) turfUser.getId()).orElse(null);
+        UserImport user = userImportRepository.findById(turfUser.getId()).orElse(null);
         if (user == null) {
-            return userImportRepository.save(new UserImport((long) turfUser.getId()));
+            return userImportRepository.save(new UserImport(turfUser.getId()));
         }
         return user;
     }

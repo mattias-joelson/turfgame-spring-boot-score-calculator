@@ -19,10 +19,10 @@ public class RegionImportService {
     private RegionImportRepository regionImportRepository;
 
     public RegionImport getOrCreate(Region turfRegion) {
-        RegionImport region = regionImportRepository.findById((long) turfRegion.getId()).orElse(null);
+        RegionImport region = regionImportRepository.findById(turfRegion.getId()).orElse(null);
         if (region == null) {
             CountryImport country = countryImportService.getOrCreate(turfRegion.getCountry());
-            return regionImportRepository.save(new RegionImport((long) turfRegion.getId(), country));
+            return regionImportRepository.save(new RegionImport(turfRegion.getId(), country));
         } else {
             CountryImport country = region.getCountry();
             if ((country == null && turfRegion.getCountry() != null)

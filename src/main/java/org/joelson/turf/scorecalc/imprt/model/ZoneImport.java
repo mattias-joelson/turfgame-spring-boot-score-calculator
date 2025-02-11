@@ -16,7 +16,7 @@ public class ZoneImport {
 
     @Id
     @Column(name = "zone_id", updatable = false, nullable = false)
-    private Long zoneId;
+    private Integer zoneId;
 
     @ManyToOne
     @JoinColumn(name = "region_id", updatable = false, nullable = false)
@@ -25,12 +25,12 @@ public class ZoneImport {
     protected ZoneImport() {
     }
 
-    public ZoneImport(Long zoneId, RegionImport region) {
+    public ZoneImport(Integer zoneId, RegionImport region) {
         this.zoneId = ModelConstraintsUtil.isAboveZero(zoneId);
         this.region = Objects.requireNonNull(region);
     }
 
-    public Long getZoneId() {
+    public Integer getZoneId() {
         return zoneId;
     }
 

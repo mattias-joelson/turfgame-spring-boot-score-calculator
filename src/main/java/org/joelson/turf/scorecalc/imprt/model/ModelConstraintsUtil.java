@@ -10,18 +10,18 @@ final class ModelConstraintsUtil {
         throw new InstantiationException("Should not be instantiated.");
     }
 
-    public static Long isNullOrAboveZero(Long l) {
-        if (l == null || l > 0L) {
-            return l;
+    public static Integer isNullOrAboveZero(Integer i) {
+        if (i == null || i > 0) {
+            return i;
         }
-        throw new IllegalArgumentException(Objects.toString(l));
+        throw new IllegalArgumentException(Objects.toString(i));
     }
 
-    public static Long isAboveZero(Long l) {
-        if (Objects.requireNonNull(l) > 0L) {
-            return l;
+    public static Integer isAboveZero(Integer i) {
+        if (Objects.requireNonNull(i) > 0) {
+            return i;
         }
-        throw new IllegalArgumentException(l.toString());
+        throw new IllegalArgumentException(i.toString());
     }
 
     public static Instant isTruncatedToSeconds(Instant instant) {

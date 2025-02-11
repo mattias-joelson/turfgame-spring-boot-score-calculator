@@ -16,7 +16,7 @@ public class RegionImport {
 
     @Id
     @Column(name = "region_id", nullable = false, updatable = false)
-    private Long regionId;
+    private Integer regionId;
 
     @ManyToOne
     @JoinColumn(name = "country_id", nullable = true, updatable = false)
@@ -25,12 +25,12 @@ public class RegionImport {
     protected RegionImport() {
     }
 
-    public RegionImport(Long regionId, CountryImport country) {
+    public RegionImport(Integer regionId, CountryImport country) {
         this.regionId = ModelConstraintsUtil.isAboveZero(regionId);
         this.country = country;
     }
 
-    public Long getRegionId() {
+    public Integer getRegionId() {
         return regionId;
     }
 

@@ -5,24 +5,24 @@ import java.util.Objects;
 
 public class AssistImportId {
 
-    private Long zone;
+    private Integer zone;
     private Instant time;
-    private Long user;
+    private Integer user;
 
     protected AssistImportId() {
     }
 
-    public AssistImportId(Long zone, Instant time, Long user) {
+    public AssistImportId(Integer zone, Instant time, Integer user) {
         setZone(zone);
         setTime(time);
         setUser(user);
     }
 
-    public Long getZone() {
+    public Integer getZone() {
         return zone;
     }
 
-    public void setZone(Long zone) {
+    public void setZone(Integer zone) {
         this.zone = ModelConstraintsUtil.isAboveZero(zone);
     }
 
@@ -34,11 +34,11 @@ public class AssistImportId {
         this.time = ModelConstraintsUtil.isTruncatedToSeconds(time);
     }
 
-    public Long getUser() {
+    public Integer getUser() {
         return user;
     }
 
-    public void setUser(Long user) {
+    public void setUser(Integer user) {
         this.user = ModelConstraintsUtil.isAboveZero(user);
     }
 

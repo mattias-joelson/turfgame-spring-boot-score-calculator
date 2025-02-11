@@ -6,13 +6,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserImportTest {
 
-    private static final Long USER_ID = 1L;
+    private static final Integer USER_ID = 1;
 
     @Test
     void testUserId() {
         assertThrows(NullPointerException.class, () -> new UserImport(null));
-        assertThrows(IllegalArgumentException.class, () -> new UserImport(0L));
-        assertThrows(IllegalArgumentException.class, () -> new UserImport(-3L));
+        assertThrows(IllegalArgumentException.class, () -> new UserImport(0));
+        assertThrows(IllegalArgumentException.class, () -> new UserImport(-3));
 
         UserImport user = new UserImport(USER_ID);
         assertEquals(USER_ID, user.getUserId());
@@ -26,7 +26,7 @@ class UserImportTest {
         assertNotEquals(user, null);
         assertNotEquals(user, new UserImport());
 
-        Long userId = USER_ID + 1;
+        Integer userId = USER_ID + 1;
         assertNotEquals(USER_ID, userId);
         assertNotEquals(user, new UserImport(userId));
     }
@@ -38,7 +38,7 @@ class UserImportTest {
         assertEquals(user.hashCode(), new UserImport(USER_ID).hashCode());
         assertNotEquals(user.hashCode(), new UserImport().hashCode());
 
-        Long userId = USER_ID + 1;
+        Integer userId = USER_ID + 1;
         assertNotEquals(USER_ID.hashCode(), userId.hashCode());
         assertNotEquals(user.hashCode(), new UserImport(userId).hashCode());
     }
