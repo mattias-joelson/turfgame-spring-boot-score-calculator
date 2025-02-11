@@ -2,6 +2,7 @@ package org.joelson.turf.scorecalc.imprt.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
@@ -19,7 +20,8 @@ public class RegionImport {
     private Integer regionId;
 
     @ManyToOne
-    @JoinColumn(name = "country_id", nullable = true, updatable = false)
+    @JoinColumn(name = "country_id", nullable = true, updatable = false,
+            foreignKey = @ForeignKey(name = "fk_countries_import_country"))
     private CountryImport country;
 
     protected RegionImport() {

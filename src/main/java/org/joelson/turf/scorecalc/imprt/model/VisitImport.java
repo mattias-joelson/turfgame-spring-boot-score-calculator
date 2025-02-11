@@ -2,6 +2,7 @@ package org.joelson.turf.scorecalc.imprt.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.Index;
@@ -26,7 +27,8 @@ public class VisitImport {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "zone_id", updatable = false, nullable = false)
+    @JoinColumn(name = "zone_id", updatable = false, nullable = false,
+            foreignKey = @ForeignKey(name = "fk_zones_imports_zone_id"))
     private ZoneImport zone;
 
     @Id
@@ -34,7 +36,8 @@ public class VisitImport {
     private Instant time;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", updatable = false, nullable = false)
+    @JoinColumn(name = "user_id", updatable = false, nullable = false,
+            foreignKey = @ForeignKey(name = "fk_users_import_user_id"))
     private UserImport user;
 
     @Column(updatable = false, nullable = false)
