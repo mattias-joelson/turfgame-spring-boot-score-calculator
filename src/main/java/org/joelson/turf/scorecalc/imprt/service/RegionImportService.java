@@ -1,8 +1,8 @@
-package org.joelson.turf.scorecalc.service;
+package org.joelson.turf.scorecalc.imprt.service;
 
-import org.joelson.turf.scorecalc.modelimport.CountryImport;
-import org.joelson.turf.scorecalc.modelimport.RegionImport;
-import org.joelson.turf.scorecalc.modelimport.RegionImportRepository;
+import org.joelson.turf.scorecalc.imprt.model.CountryImport;
+import org.joelson.turf.scorecalc.imprt.model.RegionImport;
+import org.joelson.turf.scorecalc.imprt.model.RegionImportRepository;
 import org.joelson.turf.turfgame.apiv5.Region;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

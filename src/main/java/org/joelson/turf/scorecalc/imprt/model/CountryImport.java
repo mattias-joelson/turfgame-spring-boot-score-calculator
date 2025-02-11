@@ -1,4 +1,4 @@
-package org.joelson.turf.scorecalc.modelimport;
+package org.joelson.turf.scorecalc.imprt.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

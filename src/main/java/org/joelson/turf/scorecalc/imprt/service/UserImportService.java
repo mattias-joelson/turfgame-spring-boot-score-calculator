@@ -1,7 +1,7 @@
-package org.joelson.turf.scorecalc.service;
+package org.joelson.turf.scorecalc.imprt.service;
 
-import org.joelson.turf.scorecalc.modelimport.UserImport;
-import org.joelson.turf.scorecalc.modelimport.UserImportRepository;
+import org.joelson.turf.scorecalc.imprt.model.UserImport;
+import org.joelson.turf.scorecalc.imprt.model.UserImportRepository;
 import org.joelson.turf.turfgame.apiv5.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

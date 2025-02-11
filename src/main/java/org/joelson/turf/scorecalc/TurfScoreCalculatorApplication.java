@@ -1,6 +1,6 @@
 package org.joelson.turf.scorecalc;
 
-import org.joelson.turf.scorecalc.service.FeedImporterService;
+import org.joelson.turf.scorecalc.imprt.service.FeedImporterService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

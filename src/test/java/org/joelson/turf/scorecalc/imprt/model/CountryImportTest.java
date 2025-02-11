@@ -1,4 +1,4 @@
-package org.joelson.turf.scorecalc.modelimport;
+package org.joelson.turf.scorecalc.imprt.model;
 
 import org.junit.jupiter.api.Test;
 

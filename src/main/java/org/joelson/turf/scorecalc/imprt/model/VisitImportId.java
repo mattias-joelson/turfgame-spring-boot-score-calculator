@@ -1,21 +1,19 @@
-package org.joelson.turf.scorecalc.modelimport;
+package org.joelson.turf.scorecalc.imprt.model;
 
 import java.time.Instant;
 import java.util.Objects;
 
-public class AssistImportId {
+public class VisitImportId {
 
     private Long zone;
     private Instant time;
-    private Long user;
 
-    protected AssistImportId() {
+    protected VisitImportId() {
     }
 
-    public AssistImportId(Long zone, Instant time, Long user) {
+    public VisitImportId(Long zone, Instant time) {
         setZone(zone);
         setTime(time);
-        setUser(user);
     }
 
     public Long getZone() {
@@ -34,33 +32,24 @@ public class AssistImportId {
         this.time = ModelConstraintsUtil.isTruncatedToSeconds(time);
     }
 
-    public Long getUser() {
-        return user;
-    }
-
-    public void setUser(Long user) {
-        this.user = ModelConstraintsUtil.isAboveZero(user);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o instanceof AssistImportId visitId) {
-            return Objects.equals(zone, visitId.zone) && Objects.equals(user, visitId.user)
-                    && Objects.equals(time, visitId.time);
+        if (o instanceof VisitImportId visitId) {
+            return Objects.equals(zone, visitId.zone) && Objects.equals(time, visitId.time);
         }
         return false;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(zone, user, time);
+        return Objects.hash(zone, time);
     }
 
     @Override
     public String toString() {
-        return String.format("AssistImportId[zone=%d, time=%s, user=%d]", zone, time, user);
+        return String.format("VisitImportId[zone=%d, time=%s]", zone, time);
     }
 }

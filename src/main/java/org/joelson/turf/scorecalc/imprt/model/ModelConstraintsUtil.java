@@ -1,4 +1,4 @@
-package org.joelson.turf.scorecalc.modelimport;
+package org.joelson.turf.scorecalc.imprt.model;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;

@@ -1,8 +1,8 @@
-package org.joelson.turf.scorecalc.service;
+package org.joelson.turf.scorecalc.imprt.service;
 
-import org.joelson.turf.scorecalc.modelimport.UserImport;
-import org.joelson.turf.scorecalc.modelimport.VisitImport;
-import org.joelson.turf.scorecalc.modelimport.ZoneImport;
+import org.joelson.turf.scorecalc.imprt.model.UserImport;
+import org.joelson.turf.scorecalc.imprt.model.VisitImport;
+import org.joelson.turf.scorecalc.imprt.model.ZoneImport;
 import org.joelson.turf.turfgame.FeedObject;
 import org.joelson.turf.turfgame.apiv5.FeedTakeover;
 import org.joelson.turf.turfgame.apiv5.User;

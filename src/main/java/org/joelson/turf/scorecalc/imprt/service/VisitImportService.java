@@ -1,12 +1,12 @@
-package org.joelson.turf.scorecalc.service;
+package org.joelson.turf.scorecalc.imprt.service;
 
-import org.joelson.turf.scorecalc.modelimport.AssistImport;
-import org.joelson.turf.scorecalc.modelimport.AssistImportRepository;
-import org.joelson.turf.scorecalc.modelimport.UserImport;
-import org.joelson.turf.scorecalc.modelimport.VisitImport;
-import org.joelson.turf.scorecalc.modelimport.VisitImportId;
-import org.joelson.turf.scorecalc.modelimport.VisitImportRepository;
-import org.joelson.turf.scorecalc.modelimport.ZoneImport;
+import org.joelson.turf.scorecalc.imprt.model.AssistImport;
+import org.joelson.turf.scorecalc.imprt.model.AssistImportRepository;
+import org.joelson.turf.scorecalc.imprt.model.UserImport;
+import org.joelson.turf.scorecalc.imprt.model.VisitImport;
+import org.joelson.turf.scorecalc.imprt.model.VisitImportId;
+import org.joelson.turf.scorecalc.imprt.model.VisitImportRepository;
+import org.joelson.turf.scorecalc.imprt.model.ZoneImport;
 import org.joelson.turf.turfgame.apiv5.Region;
 import org.joelson.turf.turfgame.apiv5.User;
 import org.joelson.turf.turfgame.apiv5.Zone;
