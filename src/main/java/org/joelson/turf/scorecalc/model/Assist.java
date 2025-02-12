@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Entity
 @IdClass(AssistId.class)
-@Table(name = "assists_import", indexes = { @Index(name = "index_assists_zone_id", columnList = "zone_id"),
+@Table(name = "assists", indexes = { @Index(name = "index_assists_zone_id", columnList = "zone_id"),
         @Index(name = "index_assists_time", columnList = "time"),
         @Index(name = "index_assists_user_id", columnList = "user_id"),
         @Index(name = "index_assists_user_name", columnList = "user_name") })
@@ -24,7 +24,7 @@ public class Assist {
     @Id
     @ManyToOne
     @JoinColumn(name = "zone_id", updatable = false, nullable = false,
-            foreignKey = @ForeignKey(name = "fk_zones_import_zone_id"))
+            foreignKey = @ForeignKey(name = "fk_zones_zone_id"))
     private Zone zone;
 
     @Id
@@ -34,7 +34,7 @@ public class Assist {
     @Id
     @ManyToOne
     @JoinColumn(name = "user_id", updatable = false, nullable = false,
-            foreignKey = @ForeignKey(name = "fk_users_import_user_id"))
+            foreignKey = @ForeignKey(name = "fk_users_user_id"))
     private User user;
 
     @Column(name = "user_name", updatable = false, nullable = false)

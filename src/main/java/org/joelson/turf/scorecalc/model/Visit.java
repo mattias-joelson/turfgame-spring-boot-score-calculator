@@ -28,7 +28,7 @@ public class Visit {
     @Id
     @ManyToOne
     @JoinColumn(name = "zone_id", updatable = false, nullable = false,
-            foreignKey = @ForeignKey(name = "fk_zones_imports_zone_id"))
+            foreignKey = @ForeignKey(name = "fk_zones_zone_id"))
     private Zone zone;
 
     @Id
@@ -37,7 +37,7 @@ public class Visit {
 
     @ManyToOne
     @JoinColumn(name = "user_id", updatable = false, nullable = false,
-            foreignKey = @ForeignKey(name = "fk_users_import_user_id"))
+            foreignKey = @ForeignKey(name = "fk_users_user_id"))
     private User user;
 
     @Column(updatable = false, nullable = false)
