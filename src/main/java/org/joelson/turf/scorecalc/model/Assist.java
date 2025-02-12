@@ -85,7 +85,8 @@ public class Assist {
 
     @Override
     public String toString() {
-        return String.format("Assist[zoneId=%d, time=%s, userId=%d, userName=%s",
-                zone.getZoneId(), time, user.getUserId(), userName);
+        return String.format("Assist[%s, time=%s, %s, userName=%s",
+                (zone != null) ? "zone.getZoneId()=" + zone.getZoneId() : "zone=null", time,
+                (user != null) ? "user.getUserId()=" + user.getUserId() : "user=null", userName);
     }
 }

@@ -130,9 +130,10 @@ public class Visit {
     @Override
     public String toString() {
         return String.format(
-                "Visit[zoneId=%d, time=%s, userId=%d, takeover=%b, takePoints=%d, countryName=%s, regionName=%s, "
-                        + "zoneName=%s, userName=%s]",
-                zone.getZoneId(), time, user.getUserId(), takeover, takePoints, countryName, regionName, zoneName,
-                userName);
+                "Visit[%s, time=%s, %s, takeover=%b, takePoints=%d, countryName=%s, regionName=%s, zoneName=%s, "
+                        + "userName=%s]",
+                (zone != null) ? "zone.getZoneId()=" + zone.getZoneId() : "zone=null", time,
+                (user != null) ? "user.getUserId()=" + user.getUserId() : "user=null", takeover, takePoints,
+                countryName, regionName, zoneName, userName);
     }
 }

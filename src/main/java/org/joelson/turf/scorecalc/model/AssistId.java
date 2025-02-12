@@ -61,6 +61,6 @@ public class AssistId {
 
     @Override
     public String toString() {
-        return String.format("AssistId[zone=%d, time=%s, user=%d]", zone, time, user);
+        return String.format("AssistId[zone=%s, time=%s, user=%s]", zone, time, user);
     }
 }

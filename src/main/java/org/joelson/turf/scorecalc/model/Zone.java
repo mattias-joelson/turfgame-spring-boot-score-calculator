@@ -62,7 +62,6 @@ public class Zone {
 
     @Override
     public String toString() {
-        return String.format("Zone[zoneId=%d, regionId=%d, country=%s]",
-                zoneId, regionId, (country != null) ? country : null);
+        return String.format("Zone[zoneId=%s, regionId=%s, country=%s]", zoneId, regionId, country);
     }
 }

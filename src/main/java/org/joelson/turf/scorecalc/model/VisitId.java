@@ -50,6 +50,6 @@ public class VisitId {
 
     @Override
     public String toString() {
-        return String.format("VisitId[zone=%d, time=%s]", zone, time);
+        return String.format("VisitId[zone=%s, time=%s]", zone, time);
     }
 }

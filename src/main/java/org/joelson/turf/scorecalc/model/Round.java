@@ -63,6 +63,6 @@ public class Round {
 
     @Override
     public String toString() {
-        return String.format("Round[number=%d, name=%s, start=%s]", number, name, start);
+        return String.format("Round[number=%s, name=%s, start=%s]", number, name, start);
     }
 }
