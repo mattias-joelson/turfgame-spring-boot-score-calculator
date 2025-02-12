@@ -3,7 +3,7 @@ package org.joelson.turf.scorecalc.model;
 import java.time.Instant;
 import java.util.Objects;
 
-public final class ModelConstraintsUtil {
+final class ModelConstraintsUtil {
 
     private ModelConstraintsUtil() throws InstantiationException {
         throw new InstantiationException("Should not be instantiated.");
