@@ -84,6 +84,10 @@ public class RoundService {
         }
     }
 
+    public Round get(int number) {
+        return roundRepository.findById(number).orElse(null);
+    }
+
     public Round getOrCreate(int number, Instant start) {
         Round round = roundRepository.findById(number).orElse(null);
         if (round == null) {

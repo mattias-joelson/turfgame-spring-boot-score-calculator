@@ -2,6 +2,7 @@ package org.joelson.turf.scorecalc;
 
 import org.joelson.turf.scorecalc.service.FeedImporterService;
 import org.joelson.turf.scorecalc.service.RoundService;
+import org.joelson.turf.scorecalc.service.ScoreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class TurfScoreCalculatorApplication {
     @Autowired
     RoundService roundService;
 
+    @Autowired
+    ScoreService scoreService;
+
     public static void main(String[] args) {
         SpringApplication.run(TurfScoreCalculatorApplication.class, args);
     }
@@ -33,6 +37,9 @@ public class TurfScoreCalculatorApplication {
             logArray("Program arguments:", "No program arguments.", args);
             feedImporterService.importFeeds(args);
             roundService.updateRounds();
+            for (int roundNumber = 175; roundNumber >= 163; roundNumber -= 1) {
+                scoreService.calculateRoundScores(roundNumber);
+            }
         };
     }
 

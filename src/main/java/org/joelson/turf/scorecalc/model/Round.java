@@ -16,7 +16,7 @@ public class Round {
 
     @Id
     @Column(updatable = false, nullable = false)
-    public Integer number;
+    public Integer number; // "round-number"
 
     @Column(updatable = false, nullable = false)
     public String name;

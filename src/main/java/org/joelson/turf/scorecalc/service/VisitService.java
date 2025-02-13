@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class VisitService {
@@ -51,5 +52,17 @@ public class VisitService {
     private void addAssist(Zone zone, Instant time, org.joelson.turf.turfgame.apiv5.User turfUser) {
         User user = userService.getOrCreate(turfUser);
         assistRepository.save(new Assist(zone, time, user, turfUser.getName()));
+    }
+
+    public List<Integer> getDistinctZonesBetween(Instant start, Instant end) {
+        return visitRepository.getDistinctZoneIdsBetween(start, end);
+    }
+
+    public List<Visit> getVisitsForZoneIdBetween(Integer zoneId, Instant start, Instant end) {
+        return visitRepository.getVisitsForZoneIdBetween(zoneId, start, end);
+    }
+
+    public List<Assist> getAssistsForZoneIdBetween(Integer zoneId, Instant start, Instant end) {
+        return assistRepository.getAssistsForZoneIdBetween(zoneId, start, end);
     }
 }

@@ -117,6 +117,7 @@ public class FeedImporterService {
         org.joelson.turf.turfgame.apiv5.User turfPreviousOwner = feedTakeover.getPreviousOwner();
         User previousOwner = (turfPreviousOwner != null) ? userService.getOrCreate(turfPreviousOwner) :
                 null;
+        // revisit funkar inte
         boolean takeover = (previousOwner == null) || !Objects.equals(user.getUserId(), previousOwner.getUserId());
         int zoneTakepoints = feedTakeover.getZone().getTakeoverPoints();
         visitService.add(zone, time, user, takeover, zoneTakepoints, feedTakeover.getZone(),
